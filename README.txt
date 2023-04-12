@@ -53,11 +53,26 @@ amcli set contract recipient ./hello_recipient -p recipient
 
 4. call contract
 
+inline action call
+
 ```
 amcli push action recipient hi '["hello","one msg"]' -p hello
 
 executed transaction: 4f721d154c11cf64c258d2567391ce6c68c7ae3270fd4dae9e00de0dda913ae7  112 bytes  1418 us
 #     recipient <= recipient::hi                {"user":"hello","msg":"one msg"}
+>> Name : hello
+#     recipient <= recipient::notify            {"user":"hello","msg":"helloone msg"}
+#         hello <= recipient::notify            {"user":"hello","msg":"helloone msg"}
+```
+
+
+action_wrapper call
+
+```
+amcli push action recipient hi2 '["hello","one msg"]' -p hello
+
+executed transaction: 7460bffd4b5f534ea35e874e08a36a8e02db29b25887b614a8bea6ee24739a50  112 bytes  1048 us
+#     recipient <= recipient::hi2               {"user":"hello","msg":"one msg"}
 >> Name : hello
 #     recipient <= recipient::notify            {"user":"hello","msg":"helloone msg"}
 #         hello <= recipient::notify            {"user":"hello","msg":"helloone msg"}
